@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from 'react'
+
+const wheathetApp = () => {
+  const [city , setCity] = useState('')
+  const [Country , setCountry] = useState('')
+
+
+    useEffect = (() => {
+      const fetchData = async () => {
+        const url = "view-source:https://api.openweathermap.org/data/2.5/weather?q=pakistan&units=metric&appid=74581e2bfd3c63875860c2e5d87f9f3f"
+        const response = await fetch(url)
+        console.log(response);
+      }
+
+      fetchData()
+    })
+
+
+   const cityChange = (event) => {
+    setCity(event.target.value)
+   }
+
+    const countryChange = (event) => {
+      setCountry(event.target.value)
+    }
+
+     const EmptyFiel = () => {
+       setCity("");
+       setCountry("");
+     }
+
+
+     
+
+  return (
+
+    <>
+            <h1>Weather App</h1>
+        <div className='mainContainer'>
+        <div className='countrycontainer'>
+            <input type='text' placeholder='Country' value={Country} onChange={countryChange} />
+        </div>
+        <div className='citycontainer'>
+          <input type='text' placeholder='City' value={city} onChange={cityChange}/> 
+        </div>
+        </div>
+        <div  className='btnContainer'>
+          <button id='empty' onClick={EmptyFiel}>Empty Fields</button>
+          <button id='weather'>Get Weather</button>
+        </div>
+    </>
+  )
+}
+
+export default wheathetApp
